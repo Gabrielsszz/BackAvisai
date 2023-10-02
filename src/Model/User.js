@@ -23,6 +23,24 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+const PubSchema = new mongoose.Schema({
+  user: {
+    type: String,
+    required: true,
+  },
+  productName: {
+    type: String,
+    required: true,
+  },
+  productLink: {
+    type: String,
+    required: true,
+  },
+  productDescription: {
+    type: String,
+  },
+});
+
 UserSchema.pre("save", async function (next){
   const hash = await bccryptjs.hash(this.password, 10);
   this.password = hash
